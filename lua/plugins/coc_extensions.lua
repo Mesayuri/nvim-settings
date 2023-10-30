@@ -1,0 +1,19 @@
+vim.cmd([[
+    let g:coc_global_extensions = [
+        \'coc-eslint',
+        \'coc-git',
+        \'coc-highlight',
+        \'coc-jedi',
+        \'coc-diagnostic',
+        \'coc-json',
+        \'coc-lists',
+        \'coc-markdownlint',
+        \'coc-tslint-plugin',
+        \'coc-tsserver',
+        \'coc-yaml',
+        \'coc-lua',
+        \'coc-pairs',
+        \'coc-html',
+        \'coc-css',
+    \]
+]])

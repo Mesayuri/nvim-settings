@@ -1,0 +1,35 @@
+{
+  "languageserver": {
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "trace.server": "verbose",
+      "filetypes": ["go"]
+    }
+  },
+  "jedi": {
+    "enable": true,
+    "startupMessage": false,
+    "executable.command": "jedi-language-server",
+    "trace.server": "verbose",
+    "workspace.extraPaths": ["."]
+  },
+  "diagnostic.enable": true,
+  "diagnostic-languageserver.enable": true,
+  "diagnostic-languageserver.filetypes": {
+    "python": ["flake8"],
+    "php": ["phpcs", "phpstan"]
+  },
+  "pyright": {
+    "enable": false
+  },
+  "Lua.diagnostics.globals": ["vim"],
+  "explorer.width": 20,
+  "explorer.toggle": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.source": "nvim-web-devicons",
+  "explorer.keyMappings": {
+  },
+  "snippets.ultisnips.pythonPrompt": false
+}
