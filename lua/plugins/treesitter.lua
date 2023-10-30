@@ -9,6 +9,7 @@ if not status_ok then
 end
 
 treesitter.setup {
+    auto_install = true,
     highlight = {
         enable = true,
     },

@@ -2,14 +2,15 @@ local mason = require('mason')
 local lspconfig = require('lspconfig')
 local mason_lspconfig = require('mason-lspconfig')
 
+mason.setup()
+mason_lspconfig.setup()
+
 local on_attach = function(client, bufnr)
-  -- LSPが持つフォーマット機能を無効化する
-  -- →例えばtsserverはデフォルトでフォーマット機能を提供しますが、利用したくない場合はコメントアウトを解除してください
+  -- LSPが持つフォーマット機能を無効化する --
+  -- 例えばtsserverはデフォルトでフォーマット機能を提供するが、利用したくない場合は次の行のコメントアウトを解除する
   --client.server_capabilities.documentFormattingProvider = false
 
-  -- 下記ではデフォルトのキーバインドを設定しています
-  -- ほかのLSPプラグインを使う場合（例：Lspsaga）は必要ないこともあります
-
+  -- デフォルトのキーバインドを設定 --
   local set = vim.keymap.set
   set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
   set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -23,11 +24,10 @@ local on_attach = function(client, bufnr)
   set("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
 
 end
+
 -- 補完プラグインであるcmp_nvim_lspをLSPと連携する
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-mason.setup()
-mason_lspconfig.setup()
 mason_lspconfig.setup_handlers {
     function (server_name)
         lspconfig[server_name].setup {

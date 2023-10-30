@@ -14,6 +14,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local opts = {
+    defaults = {
+        lazy = true,
+    },
+}
+
 -- プラグインの読み込み
 require('lazy').setup({
     -- Colorschemes --
@@ -28,6 +34,7 @@ require('lazy').setup({
     -- Icons --
     {
         'kyazdani42/nvim-web-devicons',
+        lazy = false,
         config = function()
             require('nvim-web-devicons').setup()
         end,
@@ -36,6 +43,7 @@ require('lazy').setup({
     -- Statuslines --
     {
         'nvim-lualine/lualine.nvim',
+        event = 'VimEnter',
         dependencies = { 'kyazdani42/nvim-web-devicons' },
         config = function()
             require('plugins.statuslines.lualine')
@@ -63,6 +71,7 @@ require('lazy').setup({
             'hrsh7th/nvim-cmp',
             'onsails/lspkind.nvim',
         },
+        event = 'InsertEnter',
         config = function()
             require('plugins.completions.cmp')
         end,
@@ -70,7 +79,8 @@ require('lazy').setup({
 
     -- {
     --     'nvim-treesitter/nvim-treesitter',
-    --     lazy = false,
+    --     event = 'VeryLazy',
+    --     build = ':TSUpdate',
     --     config = function()
     --         require('plugins.treesitter')
     --     end,
@@ -79,7 +89,11 @@ require('lazy').setup({
     -- Language servers --
     -- Builtin LSP
     'neovim/nvim-lspconfig',
-    'williamboman/mason.nvim',
+    {
+        'williamboman/mason.nvim',
+        build = ':MasonUpdate',
+        event = 'VimEnter',
+    },
     {
         'williamboman/mason-lspconfig.nvim',
         dependencies = {
@@ -87,6 +101,7 @@ require('lazy').setup({
             'williamboman/mason.nvim',
             'hrsh7th/nvim-cmp',
         },
+        event = 'VeryLazy',
         config = function()
             require('plugins.language_servers.mason_lspconfig')
         end,
@@ -155,6 +170,7 @@ require('lazy').setup({
     -- etc. --
     {
         'numToStr/Comment.nvim',
+        event = 'VeryLazy',
         config = function()
             require('Comment').setup()
         end
@@ -169,4 +185,6 @@ require('lazy').setup({
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
     },
-})
+},
+opts
+)
