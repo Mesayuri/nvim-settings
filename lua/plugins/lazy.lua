@@ -19,6 +19,7 @@ require('lazy').setup({
     -- Colorschemes --
     {
         'folke/tokyonight.nvim',
+        lazy = false,
         config = function()
             require('plugins.colorschemes.tokyonight')
         end,
@@ -37,29 +38,69 @@ require('lazy').setup({
         'nvim-lualine/lualine.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' },
         config = function()
-            require('plugins.lualine')
+            require('plugins.statuslines.lualine')
         end,
     },
+
+    -- Completions --
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/vim-vsnip',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    'onsails/lspkind.nvim',
+    {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/vim-vsnip',
+            'hrsh7th/cmp-vsnip',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/nvim-cmp',
+            'onsails/lspkind.nvim',
+        },
+        config = function()
+            require('plugins.completions.cmp')
+        end,
+    },
+
+    -- {
+    --     'nvim-treesitter/nvim-treesitter',
+    --     lazy = false,
+    --     config = function()
+    --         require('plugins.treesitter')
+    --     end,
+    -- },
 
     -- Language servers --
+    -- Builtin LSP
+    'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
     {
-        'neoclide/coc.nvim',
-        branch = 'release',
+        'williamboman/mason-lspconfig.nvim',
+        dependencies = {
+            'neovim/nvim-lspconfig',
+            'williamboman/mason.nvim',
+            'hrsh7th/nvim-cmp',
+        },
         config = function()
-            require('plugins.coc')
-            require('plugins.coc_extensions')
-            -- require 'plugins.coc_explorer'
+            require('plugins.language_servers.mason_lspconfig')
         end,
     },
 
-    -- Treesitter --
-    {
-        'nvim-treesitter/nvim-treesitter',
-        lazy = false,
-        config = function()
-            require('plugins.treesitter')
-        end,
-    },
+    -- Coc.nvim
+    -- {
+    --     'neoclide/coc.nvim',
+    --     branch = 'release',
+    --     config = function()
+    --         require('plugins.language_servers.coc')
+    --         require('plugins.language_servers.coc_extensions')
+    --     end,
+    -- },
 
     -- Terminals --
     'kassio/neoterm',

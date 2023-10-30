@@ -45,7 +45,6 @@ M.go = function()
     set_indent(4, true)
 end
 
--- return --
 local filetypes = setmetatable(M, {
     __index = function()
         return function()
