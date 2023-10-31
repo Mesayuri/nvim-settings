@@ -121,6 +121,7 @@ require('lazy').setup({
     'kassio/neoterm',
     {
         'akinsho/toggleterm.nvim',
+        event = 'VimEnter',
         version = '*',
         config = function()
             require('plugins.toggleterm')
@@ -131,14 +132,14 @@ require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        lazy = false,
+        event = 'VeryLazy',
         config = function()
             require('plugins.telescope')
         end
     },
     {
         'nvim-tree/nvim-tree.lua',
-        lazy = false,
+        event = 'VeryLazy',
         config = function()
             require('plugins.nvim_tree')
         end
@@ -161,6 +162,7 @@ require('lazy').setup({
     -- Tabpage Integrations --
     {
         'akinsho/bufferline.nvim',
+        event = 'VimEnter',
         dependencies = 'nvim-tree/nvim-web-devicons',
         config = function()
             require('plugins.bufferline')
