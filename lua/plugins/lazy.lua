@@ -58,7 +58,6 @@ require('lazy').setup({
     'hrsh7th/vim-vsnip',
     'hrsh7th/cmp-vsnip',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/nvim-cmp',
     'onsails/lspkind.nvim',
     {
         'hrsh7th/nvim-cmp',
@@ -69,7 +68,6 @@ require('lazy').setup({
             'hrsh7th/vim-vsnip',
             'hrsh7th/cmp-vsnip',
             'hrsh7th/cmp-cmdline',
-            'hrsh7th/nvim-cmp',
             'onsails/lspkind.nvim',
         },
         event = 'InsertEnter',
@@ -78,14 +76,14 @@ require('lazy').setup({
         end,
     },
 
-    -- {
-    --     'nvim-treesitter/nvim-treesitter',
-    --     event = 'VeryLazy',
-    --     build = ':TSUpdate',
-    --     config = function()
-    --         require('plugins.treesitter')
-    --     end,
-    -- },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        event = 'VeryLazy',
+        build = ':TSUpdate',
+        config = function()
+            require('plugins.treesitter')
+        end,
+    },
 
     -- Language servers --
     -- Builtin LSP
