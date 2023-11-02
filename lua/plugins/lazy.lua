@@ -8,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
         'clone',
         '--filter=blob:none',
         'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable', -- latest stable release
+        '--branch=stable',
         lazypath,
     })
 end
@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {
     defaults = {
+        -- デフォルトで遅延読み込みを有効にする。各プラグインの読み込み設定で、
+        -- 明示的に読み込みタイミングを設定しない場合そのプラグインは有効にならないので注意。
         lazy = true,
     },
 }
@@ -30,6 +32,7 @@ require('lazy').setup({
             require('plugins.colorschemes.tokyonight')
         end,
     },
+    -- 'sainnhe/everforest',
 
     -- Icons --
     {
@@ -76,6 +79,7 @@ require('lazy').setup({
         end,
     },
 
+    -- Highlight --
     {
         'nvim-treesitter/nvim-treesitter',
         event = 'VeryLazy',
@@ -84,14 +88,18 @@ require('lazy').setup({
             require('plugins.treesitter')
         end,
     },
+    {
+        'RRethy/vim-illuminate',
+        event = 'VeryLazy',
+    },
 
     -- Language servers --
     -- Builtin LSP
     'neovim/nvim-lspconfig',
     {
         'williamboman/mason.nvim',
-        build = ':MasonUpdate',
         event = 'VimEnter',
+        build = ':MasonUpdate',
     },
     {
         'williamboman/mason-lspconfig.nvim',
@@ -148,11 +156,13 @@ require('lazy').setup({
     -- telescope extensions --
     {
         'nvim-telescope/telescope-file-browser.nvim',
+        event = 'VeryLazy',
         dependencies = { 'nvim-telescope/telescope.nvim' },
     },
     'LinArcX/telescope-command-palette.nvim',
     {
         'https://git.sr.ht/~havi/telescope-toggleterm.nvim',
+        event = 'VeryLazy',
         dependencies = {
             'nvim-telescope/telescope.nvim',
             'akinsho/nvim-toggleterm.lua',
@@ -171,6 +181,16 @@ require('lazy').setup({
 
     -- etc. --
     {
+        -- greeter --
+        'goolord/alpha-nvim',
+        lazy = false,
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function ()
+          require('alpha').setup(require('alpha.themes.dashboard').config)
+        end,
+    },
+    {
+        -- toggle comment --
         'numToStr/Comment.nvim',
         event = 'VeryLazy',
         config = function()
@@ -179,12 +199,14 @@ require('lazy').setup({
     },
     {
         'petertriho/nvim-scrollbar',
+        event = 'VeryLazy',
         config = function()
             require('scrollbar').setup()
         end
     },
     {
         'lukas-reineke/indent-blankline.nvim',
+        event = 'VeryLazy',
         main = 'ibl',
     },
 },

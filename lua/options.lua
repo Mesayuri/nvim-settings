@@ -29,3 +29,4 @@ vim.o.smartcase = true  -- smart case (require ignorecase = true)
 
 vim.o.mouse = ''        -- 'a': enable mouse input | '': disable
 vim.o.belloff = 'all'   -- disable beep sound
+
