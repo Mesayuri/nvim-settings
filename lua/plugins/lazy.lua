@@ -35,6 +35,7 @@ require('lazy').setup({
     {
         'kyazdani42/nvim-web-devicons',
         lazy = false,
+        tag = 'nerd-v2-compat',  -- NerdFontのv3への対応が完了しておらず表示が崩れるのでv2を使用
         config = function()
             require('nvim-web-devicons').setup()
         end,
@@ -43,7 +44,7 @@ require('lazy').setup({
     -- Statuslines --
     {
         'nvim-lualine/lualine.nvim',
-        event = 'VimEnter',
+        event = 'VeryLazy',
         dependencies = { 'kyazdani42/nvim-web-devicons' },
         config = function()
             require('plugins.statuslines.lualine')
@@ -121,7 +122,8 @@ require('lazy').setup({
     'kassio/neoterm',
     {
         'akinsho/toggleterm.nvim',
-        event = 'VimEnter',
+        event = 'VeryLazy',
+        -- cmd = 'ToggleTerm',
         version = '*',
         config = function()
             require('plugins.toggleterm')
